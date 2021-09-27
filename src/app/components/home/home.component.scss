@@ -1,0 +1,52 @@
+.weather-data{
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 0 12px 0 rgb(0 0 0 / 20%);
+    background: hsla(0,0%,100%,.1)!important;
+    margin-bottom: 15%;
+    color: white;
+}
+
+.forecast{
+    background: #fff;
+    border-radius: 17px;
+    padding: 20px;
+}
+
+.border-right{
+    border-right: 1px solid black;
+}
+
+.border-right:last-child{ 
+    border-right: 0;
+}
+
+.cityName{
+    border-radius: 20px;
+    border: 0;
+    background: hsla(0,0%,100%,.2);
+    text-align: center;
+    color: #fff;
+    width: 50%;
+}
+
+.cityName::placeholder{
+    color: #fff;
+}
+
+.cityName:focus::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+.cityName:focus{
+    outline: none;
+}
+
+.btn{
+    color: #fff;
+}
+
+.lookCity{
+    text-align: center;
+    margin-bottom: 5%;
+}

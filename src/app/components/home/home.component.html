@@ -1,0 +1,84 @@
+<form class="lookCity" (ngSubmit)=onSubmit(f) #f="ngForm">
+    <input type="text" class="cityName" name="city" ngModel #city="ngModel" placeholder="Name of a city">
+    <button class="btn" name="button">go</button>
+</form>
+
+
+
+
+<ng-container *ngIf="cityName == ''">
+    <div class="container">
+        <div class="row">
+            <div class="col weather-data" *ngIf="currentLocationData">
+                <h3>{{currentLocationData?.name}}</h3>
+                <h1>{{currentLocationData?.main?.temp}}&deg;</h1>
+                <img src="http://openweathermap.org/img/wn/{{currentLocationData?.weather[0]?.icon}}.png" alt="">
+                <h5>{{currentLocationData?.weather[0].description}}</h5>
+                <h5>Max: {{currentLocationData?.main.temp_max}}&deg;</h5>
+                <h5>Min: {{currentLocationData?.main.temp_min}}&deg;</h5>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<div *ngIf="currentLocationData == null" style="text-align: center;">
+    <div class="spinner-border" role="status" >
+    </div>
+</div>
+
+
+
+<ng-container *ngIf="currentLocationData != null && cityName == '' " style="margin-top: 200px;">
+    <div class="container forecast">
+        <div class="row">
+            <div class="col border-right" style="text-align: center;" *ngFor="let day of currentLocationForecast">
+                <h4>{{day.dt_txt | date:'shortDate'}}</h4>
+                <h1>{{day.main.temp}}&deg;</h1>
+                <img src="http://openweathermap.org/img/wn/{{day?.weather[0]?.icon}}.png" alt="">
+                <div class="row">
+                    <div class="col">
+                        {{day.main.temp_max}}&deg;
+                    </div>
+                    <div class="col">
+                        {{day.main.temp_min}}&deg;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+
+<div class="container" *ngIf="cityName" >
+    <div class="row">
+        <div class="col weather-data" >
+            <h3>{{searchedLocationData?.name }}</h3>
+            <h1>{{searchedLocationData?.main?.temp}}&deg;</h1>
+            <img src="http://openweathermap.org/img/wn/{{searchedLocationData?.weather[0]?.icon}}.png" alt="">
+            <h5>{{searchedLocationData?.weather[0].description}}</h5>
+            <h5>Max: {{searchedLocationData?.main.temp_max}}&deg;</h5>
+            <h5>Min: {{searchedLocationData?.main.temp_min}}&deg;</h5>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container forecast" *ngIf="cityName" >
+    <div class="row">
+        <div class="col" style="text-align: center;" *ngFor="let day of searchedLocationForecast">
+            <h1>{{day.dt_txt | date}}</h1>
+            <img src="http://openweathermap.org/img/wn/{{day?.weather[0]?.icon}}.png" alt="">
+            <div class="row">
+                <div class="col">
+                    {{day.main.temp_max}}
+                </div>
+                <div class="col">
+                    {{day.main.temp_min}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
